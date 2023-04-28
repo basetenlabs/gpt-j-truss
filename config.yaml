@@ -1,0 +1,27 @@
+data_dir: data
+environment_variables: {}
+examples_filename: examples.yaml
+input_type: Any
+model_class_filename: model.py
+model_class_name: GPTJTransformerModel
+model_framework: custom
+model_metadata: {}
+model_module_dir: model
+model_name: GPT-J
+model_type: custom
+python_version: py39
+requirements:
+  - torch
+  - transformers
+  - accelerate
+resources:
+  cpu: "3"
+  memory: 14Gi
+  use_gpu: true
+secrets: {}
+system_packages: []
+external_data:
+  - url: https://baseten-public.s3.us-west-2.amazonaws.com/models/gpt-j/saved_model/pytorch_model-00001-of-00002.bin
+    local_data_path: saved_model/pytorch_model-00001-of-00002.bin
+  - url: https://baseten-public.s3.us-west-2.amazonaws.com/models/gpt-j/saved_model/pytorch_model-00002-of-00002.bin
+    local_data_path: saved_model/pytorch_model-00002-of-00002.bin
