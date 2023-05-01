@@ -51,8 +51,8 @@ class GPTJTransformerModel(object):
     def load(self):
         # Load model here and assign to self._model.
         self.device = 0 if torch.cuda.is_available() else "cpu"
-        self._tokenizer = AutoTokenizer.from_pretrained(Path(self._data_dir) / "tokenizer"),
-        self._model = AutoModelForCausalLM.from_pretrained(Path(self._data_dir) / "saved_model", revision="float16", torch_dtype=torch.float16, device_map="auto"),
+        self._tokenizer = AutoTokenizer.from_pretrained(Path(self._data_dir) / "tokenizer")
+        self._model = AutoModelForCausalLM.from_pretrained(Path(self._data_dir) / "saved_model", revision="float16", torch_dtype=torch.float16, device_map="auto")
         self.ready = True
 
     def preprocess(self, request: Dict) -> Dict:
