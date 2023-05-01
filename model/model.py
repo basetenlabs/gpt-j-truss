@@ -70,23 +70,20 @@ class GPTJTransformerModel(object):
         return request
 
     def predict(self, request: Dict) -> Dict[str, List]:
-        response = {}
-        outputs = []
-        # We expect a list of queries
         with torch.no_grad():
-            prompt = request["prompt"]
-            output = self._tokenizer([prompt], return_tensors="pt", return_attention_mask=True)
-            attention_mask = output.attention_mask
-            input_ids = output.input_ids
-            params = _process_request_into_model_call(request)
-            gen_tokens = self._model.generate(
-                input_ids,
-                attention_mask=attention_mask,
-                **params,
-            )
-            gen_text = self._tokenizer.batch_decode(gen_tokens)[0]
-            outputs.append(gen_text)
-
-        # Invoke model and calculate predictions here.
-        response["predictions"] = outputs
-        return response
+            try:
+                prompt = request["prompt"]
+                output = self._tokenizer([prompt], return_tensors="pt", return_attention_mask=True)
+                attention_mask = output.attention_mask
+                input_ids = output.input_ids
+                params = _process_request_into_model_call(request)
+                gen_tokens = self._model.generate(
+                    input_ids,
+                    attention_mask=attention_mask,
+                    **params,
+                )
+                gen_text = self._tokenizer.batch_decode(gen_tokens)[0]
+                return {"status": "success", "data": gen_text, "message": None}
+            except Exception as exc:
+                return {"status": "error", "data": None, "message": str(exc)}
+            
