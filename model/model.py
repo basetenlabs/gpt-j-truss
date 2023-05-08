@@ -73,7 +73,7 @@ class GPTJTransformerModel(object):
         with torch.no_grad():
             try:
                 prompt = request["prompt"]
-                output = self._tokenizer([prompt], return_tensors="pt", return_attention_mask=True)
+                output = self._tokenizer(prompt, return_tensors="pt", return_attention_mask=True)
                 attention_mask = output.attention_mask
                 input_ids = output.input_ids
                 params = _process_request_into_model_call(request)
