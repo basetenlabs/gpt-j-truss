@@ -70,12 +70,10 @@ Additionally; the following optional parameters are supported as pass thru to th
 Here's an example input:
 
 ```json
-[
-    {
-        "prompt": "If I was a billionaire, I would",
-        "max_length": 50
-    }
-]
+{
+    "prompt": "If I was a billionaire, I would",
+    "max_length": 50
+}
 ```
 
 ### Output
@@ -97,10 +95,8 @@ You can invoke this model on Baseten with the following cURL command (just fill 
 ```bash
  curl -X POST https://app.baseten.co/models/{MODEL_VERSION_ID}/predict \
   -H 'Authorization: Api-Key {YOUR_API_KEY}' \
-  -d '[
-    {
-        "prompt": "If I was a billionaire, I would",
-        "max_length": 50
-    }
-]'
+  -d '{
+    "prompt": "If I was a billionaire, I would",
+    "max_length": 50
+}'
 ```
